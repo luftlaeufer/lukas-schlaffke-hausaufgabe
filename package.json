@@ -8,9 +8,11 @@
     "build": "relay-compiler --validate && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "relay": "relay-compiler"
+    "relay": "relay-compiler",
+    "get-graphql-schema": "get-graphql-schema https://staging.api.constellation.academy/api/graphql > ./src/schema.graphql --graphql"
   },
   "dependencies": {
+    "get-graphql-schema": "^2.1.2",
     "graphql": "^16.9.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

@@ -1,21 +1,46 @@
 import { useEffect, useState } from 'react'
+import { useMutation } from 'react-relay'
+import { graphql } from 'relay-runtime'
+
+const LoginAuthMutation = graphql`
+  mutation LoginAuthMutation($email: String!, $password: String!) {
+    Auth {
+      loginJwt(input: { email: $email, password: $password }) {
+        loginResult {
+          jwtTokens {
+            accessToken
+            refreshToken
+          }
+        }
+      }
+    }
+  }
+`
 
 const Login = () => {
-  const [mail, setMail] = useState('')
+  const [email, setMail] = useState('')
   const [password, setPassword] = useState('')
   const [isValidCredentials, setIsValidCredentials] = useState(false)
 
+  const [commitMutation, isMutationInFlight] = useMutation(LoginAuthMutation)
+
   useEffect(() => {
-    if (!!mail && !!password) {
+    if (!!email && !!password) {
       setIsValidCredentials(true)
     } else {
       setIsValidCredentials(false)
     }
-  }, [mail, password])
+  }, [email, password])
 
   const submitLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('submit', { mail, password })
+
+    commitMutation({
+      variables: {
+        email,
+        password,
+      },
+    })
   }
 
   return (
@@ -30,7 +55,7 @@ const Login = () => {
             <input
               id='name'
               type='text'
-              value={mail}
+              value={email}
               onChange={(e) => setMail(e.target.value)}
               className='h-10 p-2'
             />
