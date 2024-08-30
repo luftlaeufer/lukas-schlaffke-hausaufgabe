@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import type { LoginAuthMutation } from './__generated__/LoginAuthMutation.graphql'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES } from '../routes'
 
 const LoginAuthMutation = graphql`
   mutation LoginAuthMutation($email: String!, $password: String!) {
@@ -21,8 +24,10 @@ const Login = () => {
   const [email, setMail] = useState('')
   const [password, setPassword] = useState('')
   const [isValidCredentials, setIsValidCredentials] = useState(false)
+  const navigate = useNavigate()
 
-  const [commitMutation, isMutationInFlight] = useMutation(LoginAuthMutation)
+  const [commitMutation, isMutationInFlight] =
+    useMutation<LoginAuthMutation>(LoginAuthMutation)
 
   useEffect(() => {
     if (!!email && !!password) {
@@ -40,6 +45,13 @@ const Login = () => {
         email,
         password,
       },
+      onCompleted: (data) => {
+        console.log(data?.Auth?.loginJwt?.loginResult.jwtTokens)
+        navigate(ROUTES.DASHBOARD)
+      },
+      onError: (error) => {
+        console.log(error)
+      },
     })
   }
 
@@ -54,7 +66,7 @@ const Login = () => {
             </label>
             <input
               id='name'
-              type='text'
+              type='email'
               value={email}
               onChange={(e) => setMail(e.target.value)}
               className='h-10 p-2'

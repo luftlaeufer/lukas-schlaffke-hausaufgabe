@@ -8,6 +8,7 @@ import './index.css'
 import Login from './components/Login.tsx'
 import Layout from './components/Layout.tsx'
 import { ROUTES } from './routes.ts'
+import Dashboard from './components/Dashboard.tsx'
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: ROUTES.LOGIN,
     element: <Login />,
+  },
+  {
+    path: ROUTES.DASHBOARD,
+    element: <Dashboard />,
   },
 ])
 
