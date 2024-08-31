@@ -4,6 +4,8 @@ import { graphql } from 'relay-runtime'
 import type { LoginAuthMutation } from './__generated__/LoginAuthMutation.graphql'
 import { ROUTES } from '../Router'
 import { useNavigate } from 'react-router-dom'
+import { token } from './utils/helper'
+import TextInput from './TextInput'
 
 const LoginAuthMutation = graphql`
   mutation LoginAuthMutation($email: String!, $password: String!) {
@@ -48,7 +50,7 @@ const Login = () => {
       onCompleted: (data) => {
         const accessToken =
           data?.Auth?.loginJwt?.loginResult.jwtTokens.accessToken ?? ''
-        sessionStorage.setItem('accessToken', accessToken)
+        sessionStorage.setItem(token.ACCESS_TOKEN, accessToken)
         navigate({ pathname: ROUTES.DASHBOARD })
       },
       onError: (error) => {
@@ -63,27 +65,17 @@ const Login = () => {
         <h1 className='text-3xl font-bold mb-4'>Login</h1>
         <form onSubmit={submitLogin} className='flex flex-col gap-5'>
           <div className='flex flex-col gap-1'>
-            <label className='text-sm' htmlFor='name'>
-              E-Mail
-            </label>
-            <input
-              id='name'
+            <TextInput
+              label='E-Mail'
               type='email'
               value={email}
-              onChange={(e) => setMail(e.target.value)}
-              className='h-10 p-2'
+              onChange={setMail}
             />
-          </div>
-          <div className='flex flex-col gap-1'>
-            <label className='text-sm' htmlFor='password'>
-              Password
-            </label>
-            <input
-              id='password'
+            <TextInput
+              label='Password'
               type='password'
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className='h-10 p-2'
+              onChange={setPassword}
             />
           </div>
           <button
