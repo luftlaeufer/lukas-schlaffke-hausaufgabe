@@ -48,10 +48,10 @@ const Login = () => {
         password,
       },
       onCompleted: (data) => {
-        const accessToken =
-          data?.Auth?.loginJwt?.loginResult.jwtTokens.accessToken ?? ''
-        sessionStorage.setItem(token.ACCESS_TOKEN, accessToken)
-        navigate({ pathname: ROUTES.DASHBOARD })
+        const tokens = data?.Auth?.loginJwt?.loginResult.jwtTokens
+        sessionStorage.setItem(token.ACCESS_TOKEN, tokens?.accessToken || '')
+        sessionStorage.setItem(token.REFRESH_TOKEN, tokens?.refreshToken || '')
+        navigate(`/${ROUTES.DASHBOARD}`)
       },
       onError: (error) => {
         console.log(error)
@@ -69,13 +69,13 @@ const Login = () => {
               label='E-Mail'
               type='email'
               value={email}
-              onChange={setMail}
+              setValue={setMail}
             />
             <TextInput
               label='Password'
               type='password'
               value={password}
-              onChange={setPassword}
+              setValue={setPassword}
             />
           </div>
           <button

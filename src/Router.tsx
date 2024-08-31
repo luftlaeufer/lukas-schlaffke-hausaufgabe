@@ -35,4 +35,8 @@ export const Router = createBrowserRouter([
     ),
     ErrorBoundary: () => <SessionExpired />,
   },
+  {
+    path: ROUTES.NOT_FOUND,
+    Component: App,
+  },
 ])
