@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import type { LoginAuthMutation } from './__generated__/LoginAuthMutation.graphql'
+import { ROUTES } from '../Router'
 import { useNavigate } from 'react-router-dom'
-import { ROUTES } from '../routes'
 
 const LoginAuthMutation = graphql`
   mutation LoginAuthMutation($email: String!, $password: String!) {
@@ -46,8 +46,10 @@ const Login = () => {
         password,
       },
       onCompleted: (data) => {
-        console.log(data?.Auth?.loginJwt?.loginResult.jwtTokens)
-        navigate(ROUTES.DASHBOARD)
+        const accessToken =
+          data?.Auth?.loginJwt?.loginResult.jwtTokens.accessToken ?? ''
+        sessionStorage.setItem('accessToken', accessToken)
+        navigate({ pathname: ROUTES.DASHBOARD })
       },
       onError: (error) => {
         console.log(error)
@@ -57,7 +59,7 @@ const Login = () => {
 
   return (
     <>
-      <div className='p-4 m-10 bg-slate-200 text-slate-950 max-w-96 mx-auto rounded'>
+      <div className='p-4 m-10 bg-slate-400 text-slate-950 max-w-96 mx-auto rounded'>
         <h1 className='text-3xl font-bold mb-4'>Login</h1>
         <form onSubmit={submitLogin} className='flex flex-col gap-5'>
           <div className='flex flex-col gap-1'>

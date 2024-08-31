@@ -1,0 +1,1 @@
+export const useAuth = () => !!sessionStorage.getItem("accessToken")

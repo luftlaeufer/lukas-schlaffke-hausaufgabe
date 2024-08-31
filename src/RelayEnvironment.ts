@@ -9,13 +9,14 @@ import {
 const HTTP_ENDPOINT = "https://staging.api.constellation.academy/api/graphql";
 
 const fetchFn: FetchFunction = async (request, variables) => {
+  console.log({request, variables})
   const resp = await fetch(HTTP_ENDPOINT, {
     method: "POST",
     headers: {
       Accept:
-        "application/graphql-response+json; charset=utf-8, application/json; charset=utf-8",
+      "application/graphql-response+json; charset=utf-8, application/json; charset=utf-8",
       "Content-Type": "application/json",
-      // <-- Additional headers like 'Authorization' would go here
+      "Authorization": `Bearer ${sessionStorage.getItem("accessToken")}`
     },
     body: JSON.stringify({
       query: request.text, // <-- The GraphQL document composed by Relay
