@@ -1,3 +1,10 @@
-import { token } from '../utils/helper';
+import { useAppSelector } from '../store';
 
-export const useAuth = () => !!sessionStorage.getItem(token.ACCESS_TOKEN)
+
+const useAuth = () => {
+    const isAuthenticated = !!useAppSelector((state) => state.app.user.accounts[0]?.id) ?? null
+
+    return isAuthenticated
+} 
+
+export default useAuth

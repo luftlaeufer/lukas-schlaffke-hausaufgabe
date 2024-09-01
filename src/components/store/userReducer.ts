@@ -1,20 +1,39 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import type { LoginAuthMutation$data } from '../__generated__/LoginAuthMutation.graphql'
 
-// TODO: Type comes from __generated Login
-const initialState = {
-    test: '123',
-}
+
+type LoginState = LoginAuthMutation$data['Auth']['login']
+
+type WritableLoginState<T> = {
+    -readonly [P in keyof T]: T[P] extends ReadonlyArray<infer U>
+      ? Array<WritableLoginState<U>>
+      : WritableLoginState<T[P]>;
+  };
+
+const initialState: WritableLoginState<LoginState> = {
+    accounts: [{
+        id: '',
+        name: '',
+    }],
+    permissionsInAccounts: [
+        {
+            accountRef: '',
+            permissions: [],
+        }
+    ],
+};
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    // setView(state, { payload: { name } }: PayloadAction<View>) {
-    //   state.name = name
-    // },
-  },
+    setUser(state, action: PayloadAction<WritableLoginState<LoginState>>) {
+        state.accounts = action.payload?.accounts ?? [],
+        state.permissionsInAccounts = action.payload?.permissionsInAccounts ?? []
+    }
+  }
 })
 
-// export const { setView } = userSlice.actions
+export const { setUser } = userSlice.actions
 
 export default userSlice.reducer

@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import type { LoginAuthMutation } from './__generated__/LoginAuthMutation.graphql'
-import { ROUTES } from '../Router'
+import { ROUTES } from '../Router.old'
 import { useNavigate } from 'react-router-dom'
 import { token } from './utils/helper'
 import TextInput from './TextInput'
+import { useAppDispatch } from './store'
+import { setUser } from './store/userReducer'
 
 const LoginAuthMutation = graphql`
   mutation LoginAuthMutation($email: String!, $password: String!) {
@@ -18,6 +20,16 @@ const LoginAuthMutation = graphql`
           }
         }
       }
+      login(input: { email: $email, password: $password }) {
+        accounts {
+          id
+          name
+        }
+        permissionsInAccounts {
+          accountRef
+          permissions
+        }
+      }
     }
   }
 `
@@ -27,6 +39,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [isValidCredentials, setIsValidCredentials] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const [commitMutation, isMutationInFlight] =
     useMutation<LoginAuthMutation>(LoginAuthMutation)
@@ -51,7 +64,15 @@ const Login = () => {
         const tokens = data?.Auth?.loginJwt?.loginResult.jwtTokens
         sessionStorage.setItem(token.ACCESS_TOKEN, tokens?.accessToken || '')
         sessionStorage.setItem(token.REFRESH_TOKEN, tokens?.refreshToken || '')
-        navigate(`/${ROUTES.DASHBOARD}`)
+
+        dispatch(
+          setUser({
+            accounts: data?.Auth?.login?.accounts || [],
+            permissionsInAccounts:
+              data?.Auth?.login?.permissionsInAccounts || [],
+          })
+        )
+        navigate(ROUTES.DASHBOARD)
       },
       onError: (error) => {
         console.log(error)

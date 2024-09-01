@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute.tsx'
-import { useAuth } from './components/hooks/useAuth.ts'
+import useAuth from './components/hooks/useAuth.ts'
 import SessionExpired from './components/SessionExpired.tsx'
 
 const App = lazy(() => import('./App.tsx'))
@@ -15,7 +15,9 @@ export const ROUTES = {
   NOT_FOUND: '*',
 }
 
-const isAuthenitacted = useAuth()
+// const isAuthenitacted = useAuth()
+
+const isAuthenitacted = true
 
 export const Router = createBrowserRouter([
   {
