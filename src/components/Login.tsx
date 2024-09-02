@@ -60,19 +60,13 @@ const Login = () => {
         email,
         password,
       },
-      onCompleted: (data) => {
-        const tokens = data?.Auth?.loginJwt?.loginResult.jwtTokens
+      onCompleted: ({ Auth: data }) => {
+        const tokens = data?.loginJwt?.loginResult.jwtTokens
         sessionStorage.setItem(token.ACCESS_TOKEN, tokens?.accessToken || '')
         sessionStorage.setItem(token.REFRESH_TOKEN, tokens?.refreshToken || '')
 
-        dispatch(
-          setUser({
-            accounts: data?.Auth?.login?.accounts || [],
-            permissionsInAccounts:
-              data?.Auth?.login?.permissionsInAccounts || [],
-            clientMutationId: data?.Auth?.loginJwt?.clientMutationId || '',
-          })
-        )
+        // @ts-ignore
+        dispatch(setUser(data.login))
         navigate(ROUTES.DASHBOARD)
       },
       onError: (error) => {
