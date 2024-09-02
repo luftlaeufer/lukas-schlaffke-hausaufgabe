@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<78b20282c91f37f277a8a69e433d5746>>
+ * @generated SignedSource<<c98bc58eddd8cc41591beb1b8c3c72c1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -27,7 +27,6 @@ export type LoginAuthMutation$data = {
       }>;
     } | null | undefined;
     readonly loginJwt: {
-      readonly clientMutationId: string | null | undefined;
       readonly loginResult: {
         readonly jwtTokens: {
           readonly accessToken: string;
@@ -125,13 +124,6 @@ v2 = [
               }
             ],
             "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "clientMutationId",
-            "storageKey": null
           }
         ],
         "storageKey": null
@@ -219,16 +211,16 @@ return {
     "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "47eb2ae6f4c38c56c8b2e76ca2ec4394",
+    "cacheID": "3d28e7697395fcd7c203888d5dbe81f0",
     "id": null,
     "metadata": {},
     "name": "LoginAuthMutation",
     "operationKind": "mutation",
-    "text": "mutation LoginAuthMutation(\n  $email: String!\n  $password: String!\n) {\n  Auth {\n    loginJwt(input: {email: $email, password: $password}) {\n      loginResult {\n        jwtTokens {\n          accessToken\n          refreshToken\n        }\n      }\n      clientMutationId\n    }\n    login(input: {email: $email, password: $password}) {\n      accounts {\n        id\n        name\n      }\n      permissionsInAccounts {\n        accountRef\n        permissions\n      }\n    }\n  }\n}\n"
+    "text": "mutation LoginAuthMutation(\n  $email: String!\n  $password: String!\n) {\n  Auth {\n    loginJwt(input: {email: $email, password: $password}) {\n      loginResult {\n        jwtTokens {\n          accessToken\n          refreshToken\n        }\n      }\n    }\n    login(input: {email: $email, password: $password}) {\n      accounts {\n        id\n        name\n      }\n      permissionsInAccounts {\n        accountRef\n        permissions\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "910e2312990c2469163410ad501dfee9";
+(node as any).hash = "beea4bb83469d75df6d6e0d9270b93de";
 
 export default node;

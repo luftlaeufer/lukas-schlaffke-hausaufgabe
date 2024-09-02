@@ -1,10 +1,10 @@
 import { useAppSelector } from '../store';
+import { allPermissions } from '../utils/helper';
 
 
 const useAuth = () => {
-    const isAuthenticated = !!useAppSelector((state) => state.app.user.accounts[0]?.id) ?? null
-
-    return isAuthenticated
+    const permissionsInAccounts = useAppSelector((state) => state.app.user.permissionsInAccounts[0]?.permissions)
+    return permissionsInAccounts?.every(permission => allPermissions.includes(permission))
 } 
 
 export default useAuth
