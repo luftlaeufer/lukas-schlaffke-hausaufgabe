@@ -38,7 +38,6 @@ const Dashboard = () => {
   return (
     <div className='p-4'>
       <h1 className='text-2xl'>Dashboard</h1>
-      <p>Hello TODO: USERNAME</p>
       <ul className='grid grid-cols-6 gap-3 my-4'>
         {contentNodes
           ?.filter((edge) =>

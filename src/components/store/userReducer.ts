@@ -11,16 +11,8 @@ type WritableLoginState<T> = {
   };
 
 const initialState: WritableLoginState<LoginState> = {
-    accounts: [{
-        id: '',
-        name: '',
-    }],
-    permissionsInAccounts: [
-        {
-            accountRef: '',
-            permissions: [],
-        }
-    ],
+    accounts: [],
+    permissionsInAccounts: [],
 };
 
 const userSlice = createSlice({

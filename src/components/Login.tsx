@@ -70,6 +70,7 @@ const Login = () => {
             accounts: data?.Auth?.login?.accounts || [],
             permissionsInAccounts:
               data?.Auth?.login?.permissionsInAccounts || [],
+            clientMutationId: data?.Auth?.loginJwt?.clientMutationId || '',
           })
         )
         navigate(ROUTES.DASHBOARD)
