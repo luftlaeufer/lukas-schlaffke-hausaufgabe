@@ -3,10 +3,10 @@ import type { DashboardQuery } from './__generated__/DashboardQuery.graphql'
 import { useCallback } from 'react'
 
 const DashboardQuery = graphql`
-  query DashboardQuery {
+  query DashboardQuery($cursor: String) {
     Admin {
       Tree {
-        GetContentNodes {
+        GetContentNodes(first: 5, after: $cursor) {
           edges {
             node {
               structureDefinition {
@@ -14,6 +14,7 @@ const DashboardQuery = graphql`
               }
               id
             }
+            cursor
           }
         }
       }
@@ -22,7 +23,9 @@ const DashboardQuery = graphql`
 `
 
 const Dashboard = () => {
-  const data = useLazyLoadQuery<DashboardQuery>(DashboardQuery, {})
+  const data = useLazyLoadQuery<DashboardQuery>(DashboardQuery, {
+    cursor: null,
+  })
   const { edges: contentNodes } = data?.Admin?.Tree?.GetContentNodes ?? {}
 
   if (!data) {
@@ -37,8 +40,8 @@ const Dashboard = () => {
 
   return (
     <div className='p-4'>
-      <h1 className='text-2xl'>Dashboard</h1>
-      <ul className='grid grid-cols-6 gap-3 my-4'>
+      <h1 className='text-2xl font-bold'>Dashboard</h1>
+      <ul className='my-4 grid gap-3 grid-cols-3'>
         {contentNodes
           ?.filter((edge) =>
             cleanUpTitleFilter(edge?.node.structureDefinition.title)
@@ -46,9 +49,11 @@ const Dashboard = () => {
           .map((edge) => (
             <li
               key={edge?.node.id}
-              className='p-4 bg-slate-800 rounded mb-2 shadow-md flex items-center justify-center'
+              className='p-4 bg-slate-800 rounded mb-3 min-h-36 shadow-md'
             >
-              {edge?.node.structureDefinition?.title}
+              <span className='text-lg font-semibold'>
+                {edge?.node.structureDefinition?.title}
+              </span>
             </li>
           ))}
       </ul>

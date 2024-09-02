@@ -19,10 +19,10 @@ const HeaderProfile = () => {
     <div>
       {isAuthenitacted && (
         <span
-          className='uppercase cursor-pointer hover:text-slate-400'
+          className='cursor-pointer hover:text-slate-400'
           onClick={() => setOpenUserMenu((prev) => !prev)}
         >
-          {`Hello ${user.name}`}
+          {`Hello ${user.name.toUpperCase()}`}
         </span>
       )}
       {openUserMenu && (

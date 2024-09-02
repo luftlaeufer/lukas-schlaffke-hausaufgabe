@@ -105,7 +105,7 @@ const Login = () => {
             type='submit'
             className={`p-2 rounded text-white mt-4 ${
               isValidCredentials
-                ? 'bg-green-500 text-black'
+                ? 'bg-blue-500 text-black'
                 : 'bg-slate-700 cursor-not-allowed'
             }`}
           >

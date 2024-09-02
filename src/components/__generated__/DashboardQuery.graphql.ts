@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0ec6fabac1152cd0dc9a86d466aedcb8>>
+ * @generated SignedSource<<da22cb929f1ce29ad71cc762e876cb81>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,12 +9,15 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-export type DashboardQuery$variables = Record<PropertyKey, never>;
+export type DashboardQuery$variables = {
+  cursor?: string | null | undefined;
+};
 export type DashboardQuery$data = {
   readonly Admin: {
     readonly Tree: {
       readonly GetContentNodes: {
         readonly edges: ReadonlyArray<{
+          readonly cursor: string;
           readonly node: {
             readonly id: string;
             readonly structureDefinition: {
@@ -32,23 +35,49 @@ export type DashboardQuery = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = {
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "cursor"
+  }
+],
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor"
+  },
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 5
+  }
+],
+v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "title",
   "storageKey": null
 },
-v1 = {
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "cursor",
+  "storageKey": null
 };
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "DashboardQuery",
@@ -71,7 +100,7 @@ return {
             "selections": [
               {
                 "alias": null,
-                "args": null,
+                "args": (v1/*: any*/),
                 "concreteType": "TreeNodesConnection",
                 "kind": "LinkedField",
                 "name": "GetContentNodes",
@@ -101,14 +130,15 @@ return {
                             "name": "structureDefinition",
                             "plural": false,
                             "selections": [
-                              (v0/*: any*/)
+                              (v2/*: any*/)
                             ],
                             "storageKey": null
                           },
-                          (v1/*: any*/)
+                          (v3/*: any*/)
                         ],
                         "storageKey": null
-                      }
+                      },
+                      (v4/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -127,7 +157,7 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "DashboardQuery",
     "selections": [
@@ -149,7 +179,7 @@ return {
             "selections": [
               {
                 "alias": null,
-                "args": null,
+                "args": (v1/*: any*/),
                 "concreteType": "TreeNodesConnection",
                 "kind": "LinkedField",
                 "name": "GetContentNodes",
@@ -186,14 +216,15 @@ return {
                                 "name": "__typename",
                                 "storageKey": null
                               },
-                              (v0/*: any*/)
+                              (v2/*: any*/)
                             ],
                             "storageKey": null
                           },
-                          (v1/*: any*/)
+                          (v3/*: any*/)
                         ],
                         "storageKey": null
-                      }
+                      },
+                      (v4/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -209,16 +240,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "cf7080dea13167c48430270822e3ea79",
+    "cacheID": "1ec04a70ec2ad41c72316914b825fb9c",
     "id": null,
     "metadata": {},
     "name": "DashboardQuery",
     "operationKind": "query",
-    "text": "query DashboardQuery {\n  Admin {\n    Tree {\n      GetContentNodes {\n        edges {\n          node {\n            structureDefinition {\n              __typename\n              title\n            }\n            id\n          }\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query DashboardQuery(\n  $cursor: String\n) {\n  Admin {\n    Tree {\n      GetContentNodes(first: 5, after: $cursor) {\n        edges {\n          node {\n            structureDefinition {\n              __typename\n              title\n            }\n            id\n          }\n          cursor\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "21bdd24354803e79dd3d2c5e3b7ddf17";
+(node as any).hash = "9768001aaa859ea68d09777dfc6df7ce";
 
 export default node;

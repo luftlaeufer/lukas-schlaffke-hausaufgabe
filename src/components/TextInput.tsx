@@ -12,7 +12,7 @@ const TextInput = ({
   type = 'text',
 }: TextInputInterface) => {
   return (
-    <div className='flex flex-col gap-1'>
+    <div className='flex flex-col gap-1 mb-2'>
       <label className='text-sm' htmlFor={label}>
         {label}
       </label>
