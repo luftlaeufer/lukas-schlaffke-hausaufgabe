@@ -16,6 +16,10 @@ const DashboardQuery = graphql`
             }
             cursor
           }
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
         }
       }
     }
@@ -24,7 +28,7 @@ const DashboardQuery = graphql`
 
 const Dashboard = () => {
   const data = useLazyLoadQuery<DashboardQuery>(DashboardQuery, {
-    cursor: null,
+    cursor: undefined,
   })
   const { edges: contentNodes } = data?.Admin?.Tree?.GetContentNodes ?? {}
 
@@ -43,10 +47,10 @@ const Dashboard = () => {
       <h1 className='text-2xl font-bold'>Dashboard</h1>
       <ul className='my-4 grid gap-3 grid-cols-3'>
         {contentNodes
-          ?.filter((edge) =>
-            cleanUpTitleFilter(edge?.node.structureDefinition.title)
-          )
-          .map((edge) => (
+          // ?.filter((edge) =>
+          //   cleanUpTitleFilter(edge?.node.structureDefinition.title)
+          // )
+          ?.map((edge) => (
             <li
               key={edge?.node.id}
               className='p-4 bg-slate-800 rounded mb-3 min-h-36 shadow-md'

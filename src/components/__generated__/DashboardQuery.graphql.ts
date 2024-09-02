@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<da22cb929f1ce29ad71cc762e876cb81>>
+ * @generated SignedSource<<853202851bf87c2a5d429ad792f6452a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -25,6 +25,10 @@ export type DashboardQuery$data = {
             };
           };
         } | null | undefined> | null | undefined;
+        readonly pageInfo: {
+          readonly endCursor: string | null | undefined;
+          readonly hasNextPage: boolean;
+        };
       };
     };
   };
@@ -73,6 +77,31 @@ v4 = {
   "args": null,
   "kind": "ScalarField",
   "name": "cursor",
+  "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "PageInfo",
+  "kind": "LinkedField",
+  "name": "pageInfo",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "hasNextPage",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "endCursor",
+      "storageKey": null
+    }
+  ],
   "storageKey": null
 };
 return {
@@ -141,7 +170,8 @@ return {
                       (v4/*: any*/)
                     ],
                     "storageKey": null
-                  }
+                  },
+                  (v5/*: any*/)
                 ],
                 "storageKey": null
               }
@@ -227,7 +257,8 @@ return {
                       (v4/*: any*/)
                     ],
                     "storageKey": null
-                  }
+                  },
+                  (v5/*: any*/)
                 ],
                 "storageKey": null
               }
@@ -240,16 +271,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "1ec04a70ec2ad41c72316914b825fb9c",
+    "cacheID": "7154742298d028b8b3497a9594ff15a6",
     "id": null,
     "metadata": {},
     "name": "DashboardQuery",
     "operationKind": "query",
-    "text": "query DashboardQuery(\n  $cursor: String\n) {\n  Admin {\n    Tree {\n      GetContentNodes(first: 5, after: $cursor) {\n        edges {\n          node {\n            structureDefinition {\n              __typename\n              title\n            }\n            id\n          }\n          cursor\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query DashboardQuery(\n  $cursor: String\n) {\n  Admin {\n    Tree {\n      GetContentNodes(first: 5, after: $cursor) {\n        edges {\n          node {\n            structureDefinition {\n              __typename\n              title\n            }\n            id\n          }\n          cursor\n        }\n        pageInfo {\n          hasNextPage\n          endCursor\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "9768001aaa859ea68d09777dfc6df7ce";
+(node as any).hash = "cf753d21590c0a49db4ce7dbed099aa4";
 
 export default node;
