@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from './store'
 import { setUser } from './store/userReducer'
+import useAuth from './hooks/useAuth'
 
 const HeaderProfile = () => {
+  const isAuthenitacted = useAuth()
   const user = useAppSelector((state) => state.app.user.accounts[0] ?? null)
   const dispatch = useAppDispatch()
   const [openUserMenu, setOpenUserMenu] = useState(false)
@@ -15,7 +17,7 @@ const HeaderProfile = () => {
 
   return (
     <div>
-      {user && (
+      {isAuthenitacted && (
         <span
           className='uppercase cursor-pointer hover:text-slate-400'
           onClick={() => setOpenUserMenu((prev) => !prev)}
