@@ -1,5 +1,5 @@
 import reactLogo from '../assets/react.svg'
-import { ROUTES } from '../Router.old'
+import { ROUTES } from './utils/router'
 
 const Header = () => {
   return (

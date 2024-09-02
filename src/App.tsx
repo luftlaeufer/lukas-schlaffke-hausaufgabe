@@ -1,15 +1,28 @@
-import { Link } from 'react-router-dom'
-import './App.css'
-import { ROUTES } from './Router.old'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import useAuth from './components/hooks/useAuth'
+import Login from './components/Login'
+import ProtectedRoute from './components/ProtectedRoute'
+import Dashboard from './components/Dashboard'
+import Welcome from './components/Welcome'
+import { ROUTES } from './components/utils/router'
 
 function App() {
+  const isAuthenitacted = useAuth()
   return (
-    <>
-      <h1 className='mb-4'>Start-Screen</h1>
-      <Link to={ROUTES.LOGIN}>
-        <button className='bg-slate-200 text-slate-950 px-8 py-2'>Login</button>
-      </Link>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Welcome />} />
+        <Route path={ROUTES.LOGIN} element={<Login />} />
+        <Route
+          path={ROUTES.DASHBOARD}
+          element={
+            <ProtectedRoute isAuthenitacted={isAuthenitacted}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

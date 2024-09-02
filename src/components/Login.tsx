@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import { useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import type { LoginAuthMutation } from './__generated__/LoginAuthMutation.graphql'
-import { ROUTES } from '../Router.old'
 import { useNavigate } from 'react-router-dom'
 import { token } from './utils/helper'
 import TextInput from './TextInput'
 import { useAppDispatch } from './store'
 import { setUser } from './store/userReducer'
+import { ROUTES } from './utils/router'
 
 const LoginAuthMutation = graphql`
   mutation LoginAuthMutation($email: String!, $password: String!) {
