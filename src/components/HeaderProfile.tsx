@@ -12,8 +12,8 @@ const HeaderProfile = () => {
     useAppSelector((state) => state.app.user.accounts[0]?.name) ??
     localStorage.getItem(localState.USER)
   const dispatch = useAppDispatch()
-  const [openUserMenu, setOpenUserMenu] = useState(false)
   const navigate = useNavigate()
+  const [openUserMenu, setOpenUserMenu] = useState(false)
 
   const logout = useCallback(() => {
     dispatch(setUser({ accounts: [], permissionsInAccounts: [] }))

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<636b2ba89212533fd7dd19f0222cf3f1>>
+ * @generated SignedSource<<205f9a962e9942825a00964ee323ebcf>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,7 +17,11 @@ export type DashboardQuery$data = {
         readonly edges: ReadonlyArray<{
           readonly cursor: string;
           readonly node: {
+            readonly description: string | null | undefined;
             readonly id: string;
+            readonly image: {
+              readonly url: string | null | undefined;
+            } | null | undefined;
             readonly structureDefinition: {
               readonly title: string;
             };
@@ -105,6 +109,20 @@ v4 = {
   "kind": "ScalarField",
   "name": "title",
   "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "description",
+  "storageKey": null
+},
+v6 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "url",
+  "storageKey": null
 };
 return {
   "fragment": {
@@ -165,6 +183,19 @@ return {
                             "plural": false,
                             "selections": [
                               (v4/*: any*/)
+                            ],
+                            "storageKey": null
+                          },
+                          (v5/*: any*/),
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "File",
+                            "kind": "LinkedField",
+                            "name": "image",
+                            "plural": false,
+                            "selections": [
+                              (v6/*: any*/)
                             ],
                             "storageKey": null
                           }
@@ -254,6 +285,20 @@ return {
                               (v4/*: any*/)
                             ],
                             "storageKey": null
+                          },
+                          (v5/*: any*/),
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "File",
+                            "kind": "LinkedField",
+                            "name": "image",
+                            "plural": false,
+                            "selections": [
+                              (v6/*: any*/),
+                              (v3/*: any*/)
+                            ],
+                            "storageKey": null
                           }
                         ],
                         "storageKey": null
@@ -273,16 +318,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "6f350a9cb8a15c29f070bb1dbf61f9ab",
+    "cacheID": "3aadaf5e86cf96998545a388738b4459",
     "id": null,
     "metadata": {},
     "name": "DashboardQuery",
     "operationKind": "query",
-    "text": "query DashboardQuery {\n  Admin {\n    Tree {\n      GetContentNodes(first: 30) {\n        pageInfo {\n          hasNextPage\n          hasPreviousPage\n          startCursor\n          endCursor\n        }\n        edges {\n          cursor\n          node {\n            id\n            structureDefinition {\n              __typename\n              title\n            }\n          }\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query DashboardQuery {\n  Admin {\n    Tree {\n      GetContentNodes(first: 30) {\n        pageInfo {\n          hasNextPage\n          hasPreviousPage\n          startCursor\n          endCursor\n        }\n        edges {\n          cursor\n          node {\n            id\n            structureDefinition {\n              __typename\n              title\n            }\n            description\n            image {\n              url\n              id\n            }\n          }\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "f8fa72a3162a1b09df9e7f6627812939";
+(node as any).hash = "a683495545f3fb40c807f468ec9e1c0f";
 
 export default node;
