@@ -90,7 +90,7 @@ const Login = () => {
             setValue={setMail}
           />
           <TextInput
-            label='Password'
+            label='Passwort'
             type='password'
             value={password}
             setValue={setPassword}
