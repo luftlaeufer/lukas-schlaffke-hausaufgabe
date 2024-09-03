@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<885f0ee86763e517c28a4d76e5e1a575>>
+ * @generated SignedSource<<be78744f66a632ade2cb8ad47bf4563f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,24 +10,31 @@
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type DashboardNodesFragment$data = {
+export type DashboardGetContentNodesNodeFragment$data = {
   readonly id: string;
   readonly structureDefinition: {
     readonly title: string;
   };
-  readonly " $fragmentType": "DashboardNodesFragment";
+  readonly " $fragmentType": "DashboardGetContentNodesNodeFragment";
 };
-export type DashboardNodesFragment$key = {
-  readonly " $data"?: DashboardNodesFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"DashboardNodesFragment">;
+export type DashboardGetContentNodesNodeFragment$key = {
+  readonly " $data"?: DashboardGetContentNodesNodeFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"DashboardGetContentNodesNodeFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "DashboardNodesFragment",
+  "name": "DashboardGetContentNodesNodeFragment",
   "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "id",
+      "storageKey": null
+    },
     {
       "alias": null,
       "args": null,
@@ -45,19 +52,12 @@ const node: ReaderFragment = {
         }
       ],
       "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "id",
-      "storageKey": null
     }
   ],
   "type": "TreeNode",
   "abstractKey": null
 };
 
-(node as any).hash = "c4e1908e6ec5482b740cdc40a007277c";
+(node as any).hash = "4f2d01159222b38af6c70d5d2f719dd7";
 
 export default node;

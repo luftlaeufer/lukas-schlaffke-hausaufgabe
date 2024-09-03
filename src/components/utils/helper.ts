@@ -1,6 +1,7 @@
 import { Permission } from '../__generated__/LoginAuthMutation.graphql';
 
-export enum token {
+export enum localState {
+    USER = 'user',
     ACCESS_TOKEN = 'accessToken',
     REFRESH_TOKEN = 'refreshToken',
 }

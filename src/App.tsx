@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  Route,
-  RouterProvider,
-  Routes,
-} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import useAuth from './components/hooks/useAuth'
 import Login from './components/Login'
 import ProtectedRoute from './components/ProtectedRoute'

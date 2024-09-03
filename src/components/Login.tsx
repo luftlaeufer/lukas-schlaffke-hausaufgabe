@@ -3,7 +3,7 @@ import { useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import type { LoginAuthMutation } from './__generated__/LoginAuthMutation.graphql'
 import { useNavigate } from 'react-router-dom'
-import { token } from './utils/helper'
+import { localState } from './utils/helper'
 import TextInput from './TextInput'
 import { useAppDispatch } from './store'
 import { setUser } from './store/userReducer'
@@ -62,11 +62,14 @@ const Login = () => {
       },
       onCompleted: ({ Auth: data }) => {
         const tokens = data?.loginJwt?.loginResult.jwtTokens
-        localStorage.setItem(token.ACCESS_TOKEN, tokens?.accessToken || '')
-        // localStorage.setItem(token.REFRESH_TOKEN, tokens?.refreshToken || '')
+        localStorage.setItem(localState.ACCESS_TOKEN, tokens?.accessToken || '')
 
         // @ts-ignore
         dispatch(setUser(data.login))
+        localStorage.setItem(
+          localState.USER,
+          data.login?.accounts[0].name || ''
+        )
         navigate(ROUTES.DASHBOARD)
       },
       onError: (error) => {
@@ -94,7 +97,7 @@ const Login = () => {
           />
         </div>
         <button
-          disabled={!isValidCredentials}
+          disabled={!isValidCredentials || isMutationInFlight}
           type='submit'
           className={`p-2 rounded text-white mt-4 ${
             isValidCredentials

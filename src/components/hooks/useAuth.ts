@@ -1,5 +1,5 @@
 import { useAppSelector } from '../store';
-import { allPermissions, token } from '../utils/helper';
+import { allPermissions, localState } from '../utils/helper';
 
 
 const useAuth = () => {
@@ -8,7 +8,9 @@ const useAuth = () => {
     // check user permissions against all possible permissions
     const hasPermission = permissionsInAccounts?.every(permission => allPermissions.includes(permission))
 
-    return hasPermission
+    const hasLoggedIn = !!localStorage.getItem(localState.ACCESS_TOKEN)
+
+    return (hasPermission || hasLoggedIn)
 } 
 
 export default useAuth

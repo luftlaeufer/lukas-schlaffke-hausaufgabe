@@ -1,19 +1,26 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useAppDispatch, useAppSelector } from './store'
 import { setUser } from './store/userReducer'
 import useAuth from './hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES } from './utils/router'
+import { localState } from './utils/helper'
 
 const HeaderProfile = () => {
   const isAuthenitacted = useAuth()
-  const user = useAppSelector((state) => state.app.user.accounts[0] ?? null)
+  const user =
+    useAppSelector((state) => state.app.user.accounts[0]?.name) ??
+    localStorage.getItem(localState.USER)
   const dispatch = useAppDispatch()
   const [openUserMenu, setOpenUserMenu] = useState(false)
+  const navigate = useNavigate()
 
-  const logout = () => {
+  const logout = useCallback(() => {
     dispatch(setUser({ accounts: [], permissionsInAccounts: [] }))
     setOpenUserMenu(false)
     localStorage.clear()
-  }
+    navigate(`${ROUTES.LOGIN}`)
+  }, [])
 
   return (
     <div>
@@ -22,7 +29,7 @@ const HeaderProfile = () => {
           className='cursor-pointer hover:text-slate-400'
           onClick={() => setOpenUserMenu((prev) => !prev)}
         >
-          {`Hello ${user?.name.toUpperCase() ?? ''}`}
+          {`Hello ${user?.toUpperCase() ?? ''}`}
         </span>
       )}
       {openUserMenu && (

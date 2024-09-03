@@ -5,7 +5,7 @@ import {
   Store,
   FetchFunction,
 } from "relay-runtime";
-import { token } from './components/utils/helper';
+import { localState } from './components/utils/helper';
 
 const HTTP_ENDPOINT = "https://staging.api.constellation.academy/api/graphql";
 
@@ -17,7 +17,7 @@ const fetchFn: FetchFunction = async (request, variables) => {
       Accept:
       "application/graphql-response+json; charset=utf-8, application/json; charset=utf-8",
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem(token.ACCESS_TOKEN)}`
+      "Authorization": `Bearer ${localStorage.getItem(localState.ACCESS_TOKEN)}` 
     },
     body: JSON.stringify({
       query: request.text, // <-- The GraphQL document composed by Relay
