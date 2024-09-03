@@ -16,7 +16,7 @@ const Description = ({ description }: DescriptionInterface) => {
 
   return (
     <div
-      className='text-slate-400 text-xl font-light'
+      className='text-slate-400 text-xl font-light pb-6'
       ref={htmlRef}
       dangerouslySetInnerHTML={{
         __html: description ?? '',

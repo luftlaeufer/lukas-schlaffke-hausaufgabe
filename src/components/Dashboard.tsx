@@ -55,7 +55,7 @@ const Dashboard = () => {
 
   return (
     <div className='my-4 p-4 xl:p-0'>
-      <h1 className='text-3xl my-8 font-bold'>Dashboard</h1>
+      <h1 className='text-3xl mb-8 font-bold'>Lektionen</h1>
       <ul className='mt-2 grid md:grid-cols-2 xl:grid-cols-3 gap-8 pb-8'>
         {edges
           ?.filter((edge) =>
@@ -70,7 +70,7 @@ const Dashboard = () => {
               <div className=''>
                 <figure className='h-96'>
                   <img
-                    className='object-cover w-full h-full rounded-t-md'
+                    className='object-cover object-right w-full h-full rounded-t-md'
                     src={edge?.node?.image?.url!}
                   />
                 </figure>
