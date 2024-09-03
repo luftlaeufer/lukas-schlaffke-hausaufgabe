@@ -17,7 +17,7 @@ const fetchFn: FetchFunction = async (request, variables) => {
       Accept:
       "application/graphql-response+json; charset=utf-8, application/json; charset=utf-8",
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${sessionStorage.getItem(token.ACCESS_TOKEN)}`
+      "Authorization": `Bearer ${localStorage.getItem(token.ACCESS_TOKEN)}`
     },
     body: JSON.stringify({
       query: request.text, // <-- The GraphQL document composed by Relay

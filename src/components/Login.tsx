@@ -62,8 +62,8 @@ const Login = () => {
       },
       onCompleted: ({ Auth: data }) => {
         const tokens = data?.loginJwt?.loginResult.jwtTokens
-        sessionStorage.setItem(token.ACCESS_TOKEN, tokens?.accessToken || '')
-        sessionStorage.setItem(token.REFRESH_TOKEN, tokens?.refreshToken || '')
+        localStorage.setItem(token.ACCESS_TOKEN, tokens?.accessToken || '')
+        // localStorage.setItem(token.REFRESH_TOKEN, tokens?.refreshToken || '')
 
         // @ts-ignore
         dispatch(setUser(data.login))

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<60de2724818fbc19adff6434c97221ca>>
+ * @generated SignedSource<<5e0f5cd6ed1a071dd11753576b4bc468>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,65 +10,54 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type DashboardQuery$variables = Record<PropertyKey, never>;
-export type DashboardQuery$data = {
-  readonly Admin: {
-    readonly Tree: {
-      readonly GetContentNodes: {
-        readonly " $fragmentSpreads": FragmentRefs<"DashboardNodesFragment">;
-      };
-    };
-  };
+export type DashboardPaginationQuery$variables = {
+  after?: string | null | undefined;
+  first?: number | null | undefined;
 };
-export type DashboardQuery = {
-  response: DashboardQuery$data;
-  variables: DashboardQuery$variables;
+export type DashboardPaginationQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"DashboardQueryFragment">;
+};
+export type DashboardPaginationQuery = {
+  response: DashboardPaginationQuery$data;
+  variables: DashboardPaginationQuery$variables;
 };
 
-const node: ConcreteRequest = {
+const node: ConcreteRequest = (function(){
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "after"
+  },
+  {
+    "defaultValue": 10,
+    "kind": "LocalArgument",
+    "name": "first"
+  }
+],
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "after"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "first"
+  }
+];
+return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "DashboardQuery",
+    "name": "DashboardPaginationQuery",
     "selections": [
       {
-        "alias": null,
-        "args": null,
-        "concreteType": "AdminQueryType",
-        "kind": "LinkedField",
-        "name": "Admin",
-        "plural": false,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": "TreeAdminSchema",
-            "kind": "LinkedField",
-            "name": "Tree",
-            "plural": false,
-            "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "TreeNodesConnection",
-                "kind": "LinkedField",
-                "name": "GetContentNodes",
-                "plural": false,
-                "selections": [
-                  {
-                    "args": null,
-                    "kind": "FragmentSpread",
-                    "name": "DashboardNodesFragment"
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
+        "args": (v1/*: any*/),
+        "kind": "FragmentSpread",
+        "name": "DashboardQueryFragment"
       }
     ],
     "type": "Query",
@@ -76,9 +65,9 @@ const node: ConcreteRequest = {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "DashboardQuery",
+    "name": "DashboardPaginationQuery",
     "selections": [
       {
         "alias": null,
@@ -98,7 +87,7 @@ const node: ConcreteRequest = {
             "selections": [
               {
                 "alias": null,
-                "args": null,
+                "args": (v1/*: any*/),
                 "concreteType": "TreeNodesConnection",
                 "kind": "LinkedField",
                 "name": "GetContentNodes",
@@ -202,15 +191,16 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "0399ec28150a42c9c360139a05f92634",
+    "cacheID": "6c30805ede56c17b05305009e67046f2",
     "id": null,
     "metadata": {},
-    "name": "DashboardQuery",
+    "name": "DashboardPaginationQuery",
     "operationKind": "query",
-    "text": "query DashboardQuery {\n  Admin {\n    Tree {\n      GetContentNodes {\n        ...DashboardNodesFragment\n      }\n    }\n  }\n}\n\nfragment DashboardNodesFragment on TreeNodesConnection {\n  edges {\n    node {\n      structureDefinition {\n        __typename\n        title\n      }\n      id\n    }\n    cursor\n  }\n  pageInfo {\n    hasNextPage\n    endCursor\n  }\n}\n"
+    "text": "query DashboardPaginationQuery(\n  $after: String\n  $first: Int = 10\n) {\n  ...DashboardQueryFragment_2HEEH6\n}\n\nfragment DashboardQueryFragment_2HEEH6 on Query {\n  Admin {\n    Tree {\n      GetContentNodes(first: $first, after: $after) {\n        edges {\n          node {\n            structureDefinition {\n              __typename\n              title\n            }\n            id\n          }\n          cursor\n        }\n        pageInfo {\n          hasNextPage\n          endCursor\n        }\n      }\n    }\n  }\n}\n"
   }
 };
+})();
 
-(node as any).hash = "1b5b9a31a07fa6e12c9c394eb3a259d3";
+(node as any).hash = "b6cf3dd961092d7d8ba00ba2bd278a68";
 
 export default node;

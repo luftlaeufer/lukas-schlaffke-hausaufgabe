@@ -12,7 +12,7 @@ const HeaderProfile = () => {
   const logout = () => {
     dispatch(setUser({ accounts: [], permissionsInAccounts: [] }))
     setOpenUserMenu(false)
-    sessionStorage.clear()
+    localStorage.clear()
   }
 
   return (
@@ -22,7 +22,7 @@ const HeaderProfile = () => {
           className='cursor-pointer hover:text-slate-400'
           onClick={() => setOpenUserMenu((prev) => !prev)}
         >
-          {`Hello ${user.name.toUpperCase()}`}
+          {`Hello ${user?.name.toUpperCase() ?? ''}`}
         </span>
       )}
       {openUserMenu && (

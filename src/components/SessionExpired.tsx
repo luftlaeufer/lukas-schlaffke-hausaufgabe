@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
 import Login from './Login'
+import { token } from './utils/helper'
 
 const SessionExpired = () => {
-  sessionStorage.removeItem('accessToken')
+  localStorage.removeItem(token.ACCESS_TOKEN)
 
   return (
     <div>
