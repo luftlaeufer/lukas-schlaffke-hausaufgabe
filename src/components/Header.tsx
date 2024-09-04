@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import reactLogo from '../assets/react.svg'
-import HeaderProfile from './HeaderProfile'
-import { ROUTES } from './utils/router'
+
+import { ROUTES } from '@/utils/router'
+import HeaderProfile from '@/components/HeaderProfile'
 
 const Header = () => {
   return (

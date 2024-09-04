@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import Login from './Login'
-import { useAppDispatch } from './store'
-import { setUser } from './store/userReducer'
+import { useAppDispatch } from '@/store'
+import { setUser } from '@/store/userReducer'
+import Login from '@/components/Login'
 
 const SessionExpired = () => {
   useEffect(() => localStorage.clear(), [])

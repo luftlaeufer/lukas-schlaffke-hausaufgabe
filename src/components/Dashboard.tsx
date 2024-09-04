@@ -1,8 +1,8 @@
 import { graphql, useLazyLoadQuery } from 'react-relay'
-import type { DashboardQuery } from './__generated__/DashboardQuery.graphql'
 import { Reorder } from 'framer-motion'
-import TitleCard from './TitleCard'
-import useDashboard from './hooks/useDashboard'
+import {type DashboardQuery } from '@/components/__generated__/DashboardQuery.graphql'
+import useDashboard from '@/hooks/useDashboard'
+import TitleCard from '@/components/TitleCard'
 
 const DashboardQuery = graphql`
   query DashboardQuery {

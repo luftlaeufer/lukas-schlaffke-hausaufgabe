@@ -2,12 +2,13 @@ import { useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import type { LoginAuthMutation } from './__generated__/LoginAuthMutation.graphql'
 import { useNavigate } from 'react-router-dom'
-import { errorMessages, localState } from './utils/helper'
-import TextInput from './TextInput'
-import { useAppDispatch } from './store'
-import { setUser } from './store/userReducer'
-import { ROUTES } from './utils/router'
+import { errorMessages, localState } from '@/utils/helper'
+
+import { useAppDispatch } from '@/store'
+import { setUser } from '@/store/userReducer'
+import { ROUTES } from '@/utils/router'
 import { type SubmitHandler, useForm } from 'react-hook-form'
+import TextInput from '@/components/TextInput'
 
 const LoginAuthMutation = graphql`
   mutation LoginAuthMutation($email: String!, $password: String!) {
