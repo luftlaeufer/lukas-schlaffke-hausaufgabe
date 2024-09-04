@@ -72,7 +72,7 @@ const Login = () => {
         const tokens = data.loginJwt?.loginResult.jwtTokens
         localStorage.setItem(localState.ACCESS_TOKEN, tokens?.accessToken || '')
 
-        // @ts-ignore
+        // @ts-expect-error: return data is readonly but has to be stored in store, which uses the type of graphQL response
         dispatch(setUser(data.login))
         localStorage.setItem(
           localState.USER,
@@ -114,7 +114,7 @@ const Login = () => {
           type='submit'
           className={`p-2 rounded text-white mt-4 ${
             isValid
-              ? 'bg-blue-500 text-black'
+              ? 'bg-blue-600 hover:bg-blue-500 text-black'
               : 'bg-slate-700 cursor-not-allowed'
           }`}
         >

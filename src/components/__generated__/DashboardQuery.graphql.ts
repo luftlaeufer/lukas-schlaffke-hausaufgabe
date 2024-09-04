@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<205f9a962e9942825a00964ee323ebcf>>
+ * @generated SignedSource<<c58e5d5cc67c529d6919bfec847dd4ba>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -47,7 +47,7 @@ var v0 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 30
+    "value": 10
   }
 ],
 v1 = {
@@ -206,7 +206,7 @@ return {
                     "storageKey": null
                   }
                 ],
-                "storageKey": "GetContentNodes(first:30)"
+                "storageKey": "GetContentNodes(first:10)"
               }
             ],
             "storageKey": null
@@ -307,7 +307,7 @@ return {
                     "storageKey": null
                   }
                 ],
-                "storageKey": "GetContentNodes(first:30)"
+                "storageKey": "GetContentNodes(first:10)"
               }
             ],
             "storageKey": null
@@ -318,16 +318,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "3aadaf5e86cf96998545a388738b4459",
+    "cacheID": "9ec53c7b524075616de96bc14a96fd81",
     "id": null,
     "metadata": {},
     "name": "DashboardQuery",
     "operationKind": "query",
-    "text": "query DashboardQuery {\n  Admin {\n    Tree {\n      GetContentNodes(first: 30) {\n        pageInfo {\n          hasNextPage\n          hasPreviousPage\n          startCursor\n          endCursor\n        }\n        edges {\n          cursor\n          node {\n            id\n            structureDefinition {\n              __typename\n              title\n            }\n            description\n            image {\n              url\n              id\n            }\n          }\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query DashboardQuery {\n  Admin {\n    Tree {\n      GetContentNodes(first: 10) {\n        pageInfo {\n          hasNextPage\n          hasPreviousPage\n          startCursor\n          endCursor\n        }\n        edges {\n          cursor\n          node {\n            id\n            structureDefinition {\n              __typename\n              title\n            }\n            description\n            image {\n              url\n              id\n            }\n          }\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a683495545f3fb40c807f468ec9e1c0f";
+(node as any).hash = "afb03dc2b4a599a59638d3fa3ace6654";
 
 export default node;

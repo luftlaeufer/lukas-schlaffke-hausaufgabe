@@ -20,7 +20,7 @@ const HeaderProfile = () => {
     setOpenUserMenu(false)
     localStorage.clear()
     navigate(`${ROUTES.LOGIN}`)
-  }, [])
+  }, [dispatch, navigate])
 
   return (
     <div className='relative'>

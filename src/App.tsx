@@ -21,7 +21,6 @@ function App() {
           element: isAuthenitacted ? <Dashboard /> : <Welcome />,
         },
         { path: ROUTES.LOGIN, element: <Login /> },
-        { path: ROUTES.NOT_FOUND, element: <NotFound /> },
         {
           path: ROUTES.DASHBOARD,
           element: (
@@ -31,6 +30,7 @@ function App() {
           ),
           ErrorBoundary: () => <SessionExpired />,
         },
+        { path: ROUTES.NOT_FOUND, element: <NotFound /> },
       ],
       ErrorBoundary: () => <NotFound />,
     },

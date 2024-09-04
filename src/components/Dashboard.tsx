@@ -8,7 +8,7 @@ const DashboardQuery = graphql`
   query DashboardQuery {
     Admin {
       Tree {
-        GetContentNodes(first: 30) {
+        GetContentNodes(first: 10) {
           pageInfo {
             hasNextPage
             hasPreviousPage

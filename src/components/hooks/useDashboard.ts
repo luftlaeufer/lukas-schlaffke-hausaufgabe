@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { DashboardQuery$data } from '../__generated__/DashboardQuery.graphql'
 import { localState } from '../utils/helper'
 
@@ -10,9 +10,9 @@ const useDashboard = ({data}: UseDashboardInterface) => {
     const edges = data.Admin.Tree.GetContentNodes?.edges
 
     // spread all titles from API in an array to use as initial state
-    const titlesFromAPI = [
+    const titlesFromAPI = useMemo(() => [
       ...(edges?.map((edge) => edge?.node?.structureDefinition?.title) ?? []),
-    ]
+    ], [edges])
   
     // on page refresh get the titles from local storage instead of API
     const getOrderedTitles = useCallback(() => {
