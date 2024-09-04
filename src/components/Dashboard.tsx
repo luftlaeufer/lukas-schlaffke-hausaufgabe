@@ -1,13 +1,9 @@
 import { graphql, useLazyLoadQuery } from 'react-relay'
 import type { DashboardQuery } from './__generated__/DashboardQuery.graphql'
-import {
-  Suspense,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-} from 'react'
-import Description from './Description'
+import { useCallback, useState } from 'react'
+import { Reorder } from 'framer-motion'
+
+import TitleCard from './TitleCard'
 
 const DashboardQuery = graphql`
   query DashboardQuery {
@@ -41,49 +37,29 @@ const DashboardQuery = graphql`
 
 const Dashboard = () => {
   const data = useLazyLoadQuery<DashboardQuery>(DashboardQuery, {})
-  const edges = data.Admin.Tree.GetContentNodes?.edges ?? []
+  const edges = data.Admin.Tree.GetContentNodes?.edges
+
+  const titles = [
+    ...(edges?.map((edge) => edge?.node?.structureDefinition?.title) ?? []),
+  ]
+
+  const [titleCards, setTitleCards] = useState(titles)
 
   // sanitise title from white space and filter empty titles
-  const cleanUpTitleFilter = useCallback((input: string | undefined) => {
-    const titleTrimmed = input?.trim()
-    return (titleTrimmed && titleTrimmed?.length > 0) ?? false
-  }, [])
-
-  const hasImageFilter = useCallback((src: string | null | undefined) => {
-    return src && src.length > 0
-  }, [])
+  const cleanUpTitleFilter = useCallback(
+    (input: string | undefined) =>
+      input !== undefined && input.trim().length > 0,
+    []
+  )
 
   return (
     <div className='my-4 p-4 xl:p-0'>
       <h1 className='text-3xl mb-8 font-bold'>Lektionen</h1>
-      <ul className='mt-2 grid md:grid-cols-2 xl:grid-cols-3 gap-8 pb-8'>
-        {edges
-          ?.filter((edge) =>
-            cleanUpTitleFilter(edge?.node?.structureDefinition?.title)
-          )
-          .filter((edge) => hasImageFilter(edge?.node?.image?.url))
-          .map((edge) => (
-            <li
-              className='p bg-slate-800 rounded mb-3 min-h-36 shadow-md'
-              key={edge?.node.id}
-            >
-              <div className=''>
-                <figure className='h-96'>
-                  <img
-                    className='object-cover object-right w-full h-full rounded-t-md'
-                    src={edge?.node?.image?.url!}
-                  />
-                </figure>
-                <div className='p-4'>
-                  <h3 className='text-lg font-bold mt-2 mb-4'>
-                    {edge?.node.structureDefinition.title}
-                  </h3>
-                  <Description description={edge?.node.description} />
-                </div>
-              </div>
-            </li>
-          ))}
-      </ul>
+      <Reorder.Group axis='y' onReorder={setTitleCards} values={titleCards}>
+        {titleCards
+          .filter((title) => cleanUpTitleFilter(title))
+          .map((title) => title && <TitleCard title={title} key={title} />)}
+      </Reorder.Group>
     </div>
   )
 }
