@@ -40,8 +40,9 @@ const Dashboard = () => {
   const { titles, setTitles, setTitlesOrder } = useDashboard({ data })
 
   return (
-    <div className='my-4 p-4 xl:p-0'>
-      <h1 className='text-3xl mb-8 font-bold'>Lektionen</h1>
+    <div className='p-4 xl:p-0'>
+      <h1 className='text-3xl font-bold mb-4 mt-12'>Lektionen</h1>
+      <p className='mb-4'>Ordnen Sie Ihren Lehrplan so, wie Sie es wollen.</p>
       <Reorder.Group
         values={titles}
         onReorder={setTitles}
