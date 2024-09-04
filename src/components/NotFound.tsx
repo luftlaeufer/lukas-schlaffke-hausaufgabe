@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom'
-import { ROUTES } from './utils/router'
-import { useEffect } from 'react'
-import { useAppDispatch } from './store'
-import { setUser } from './store/userReducer'
+import { useEffect } from "react"
+import { Link } from "react-router-dom"
+import { useAppDispatch } from "../store"
+import { setUser } from "../store/userReducer"
+import { ROUTES } from "../utils/router"
 
 const NotFound = () => {
   useEffect(() => localStorage.clear(), [])

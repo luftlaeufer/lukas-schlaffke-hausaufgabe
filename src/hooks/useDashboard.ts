@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
-import { DashboardQuery$data } from '../__generated__/DashboardQuery.graphql'
+import type { DashboardQuery$data } from '../components/__generated__/DashboardQuery.graphql'
 import { localState } from '../utils/helper'
 
 interface UseDashboardInterface {

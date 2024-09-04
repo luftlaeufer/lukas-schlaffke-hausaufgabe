@@ -5,7 +5,7 @@ import {
   Store,
   FetchFunction,
 } from "relay-runtime";
-import { localState } from './components/utils/helper';
+import { localState } from "./utils/helper";
 
 const HTTP_ENDPOINT = "https://staging.api.constellation.academy/api/graphql";
 

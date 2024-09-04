@@ -1,13 +1,13 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import useAuth from './components/hooks/useAuth'
 import Login from './components/Login'
 import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './components/Dashboard'
 import Welcome from './components/Welcome'
-import { ROUTES } from './components/utils/router'
 import NotFound from './components/NotFound'
 import Layout from './components/Layout'
 import SessionExpired from './components/SessionExpired'
+import useAuth from './hooks/useAuth'
+import { ROUTES } from './utils/router'
 
 const App = () => {
   const isAuthenitacted = useAuth()

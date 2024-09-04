@@ -1,10 +1,10 @@
-import { useCallback, useState } from 'react'
-import { useAppDispatch, useAppSelector } from './store'
-import { setUser } from './store/userReducer'
-import useAuth from './hooks/useAuth'
-import { useNavigate } from 'react-router-dom'
-import { ROUTES } from './utils/router'
-import { localState } from './utils/helper'
+import { useState, useCallback } from "react"
+import { useNavigate } from "react-router-dom"
+import useAuth from "../hooks/useAuth"
+import { useAppSelector, useAppDispatch } from "../store"
+import { setUser } from "../store/userReducer"
+import { localState } from "../utils/helper"
+import { ROUTES } from "../utils/router"
 
 const HeaderProfile = () => {
   const isAuthenitacted = useAuth()

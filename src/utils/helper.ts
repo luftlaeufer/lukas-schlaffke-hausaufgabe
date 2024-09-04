@@ -1,4 +1,4 @@
-import { Permission } from '../__generated__/LoginAuthMutation.graphql';
+import { type Permission } from '../components/__generated__/LoginAuthMutation.graphql';
 
 export enum localState {
     USER = 'user',

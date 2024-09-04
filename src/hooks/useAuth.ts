@@ -1,6 +1,5 @@
-import { useAppSelector } from '../store';
-import { allPermissions, localState } from '../utils/helper';
-
+import { useAppSelector } from "../store"
+import { allPermissions, localState } from "../utils/helper"
 
 const useAuth = () => {
     // get user permissions from store
