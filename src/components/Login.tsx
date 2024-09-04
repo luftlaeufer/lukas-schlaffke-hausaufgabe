@@ -88,39 +88,41 @@ const Login = () => {
   }
 
   return (
-    <div className='p-4 m-10 bg-slate-400 text-slate-950 max-w-md mx-auto rounded'>
-      <h1 className='text-4xl font-bold mb-8'>Login</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5'>
-        <div className='flex flex-col gap-1'>
-          <TextInput
-            label='E-Mail'
-            name='email'
-            type='email'
-            register={register}
-            required
-            error={formErrors.email}
-          />
-          <TextInput
-            label='Passwort'
-            name='password'
-            type='password'
-            register={register}
-            required
-            error={formErrors.password}
-          />
-        </div>
-        <button
-          disabled={!isValid || isMutationInFlight}
-          type='submit'
-          className={`p-2 rounded text-white mt-4 ${
-            isValid
-              ? 'bg-blue-600 hover:bg-blue-500 text-black'
-              : 'bg-slate-700 cursor-not-allowed'
-          }`}
-        >
-          Login
-        </button>
-      </form>
+    <div className='p-10'>
+      <div className='p-4 bg-slate-400 text-slate-950 max-w-md mx-auto rounded'>
+        <h1 className='text-4xl font-bold mb-8'>Login</h1>
+        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5'>
+          <div className='flex flex-col gap-1'>
+            <TextInput
+              label='E-Mail'
+              name='email'
+              type='email'
+              register={register}
+              required
+              error={formErrors.email}
+            />
+            <TextInput
+              label='Passwort'
+              name='password'
+              type='password'
+              register={register}
+              required
+              error={formErrors.password}
+            />
+          </div>
+          <button
+            disabled={!isValid || isMutationInFlight}
+            type='submit'
+            className={`p-2 rounded text-white mt-4 ${
+              isValid
+                ? 'bg-blue-600 hover:bg-blue-500 text-black'
+                : 'bg-slate-700 cursor-not-allowed'
+            }`}
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

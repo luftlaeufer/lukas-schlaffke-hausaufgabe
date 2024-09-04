@@ -9,7 +9,7 @@ import NotFound from './components/NotFound'
 import Layout from './components/Layout'
 import SessionExpired from './components/SessionExpired'
 
-function App() {
+const App = () => {
   const isAuthenitacted = useAuth()
 
   const router = createBrowserRouter([

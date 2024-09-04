@@ -14,8 +14,6 @@ export const errorMessages = {
     }
 }
 
-
-
 export const allPermissions: Permission[] = [
 "AccountPermission_AVGSPotentialAnalysis_IsAVGSAccount",
 "AccountPermission_AZAVAdmin_IsAZAVAccount",
