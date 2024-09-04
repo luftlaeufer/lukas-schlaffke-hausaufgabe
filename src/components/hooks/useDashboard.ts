@@ -18,19 +18,19 @@ const useDashboard = ({data}: UseDashboardInterface) => {
     const getOrderedTitles = useCallback(() => {
         const orderedTitles = localStorage.getItem(localState.TITLE_CARDS)
         return orderedTitles ? JSON.parse(orderedTitles) : titlesFromAPI
-      }, []) 
+      }, [titlesFromAPI])
   
     // titles state
     const [titles, setTitles] = useState<typeof titlesFromAPI>(getOrderedTitles())
   
     // save new title order in local storage, if titles have been re-arranged
-    const setTitlesOrder = () => useCallback(() => localStorage.setItem(localState.TITLE_CARDS, JSON.stringify(titles)), [])
+    const setTitlesOrder = useCallback(() => localStorage.setItem(localState.TITLE_CARDS, JSON.stringify(titles)), [titles])
   
     // sanitise title from white space and filter empty titles
     const cleanUpTitleFilter = useCallback(
       (input: string | undefined) =>
         input !== undefined && input.trim().length > 0,
-      []
+      [],
     )
 
     return {

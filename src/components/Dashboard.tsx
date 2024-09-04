@@ -46,7 +46,7 @@ const Dashboard = () => {
         values={titles}
         onReorder={setTitles}
         axis='y'
-        onMouseUp={setTitlesOrder}
+        onMouseUp={() => setTitlesOrder()}
       >
         {titles.map(
           (title) => title && <TitleCard title={title} key={title} />
