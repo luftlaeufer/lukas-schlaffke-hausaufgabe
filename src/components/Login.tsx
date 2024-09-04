@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
 import { useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import type { LoginAuthMutation } from './__generated__/LoginAuthMutation.graphql'
 import { useNavigate } from 'react-router-dom'
-import { localState } from './utils/helper'
+import { errorMessages, localState } from './utils/helper'
 import TextInput from './TextInput'
 import { useAppDispatch } from './store'
 import { setUser } from './store/userReducer'
 import { ROUTES } from './utils/router'
+import { type SubmitHandler, useForm } from 'react-hook-form'
 
 const LoginAuthMutation = graphql`
   mutation LoginAuthMutation($email: String!, $password: String!) {
@@ -34,34 +34,42 @@ const LoginAuthMutation = graphql`
   }
 `
 
+export type LoginInput = {
+  email: string
+  password: string
+}
+
 const Login = () => {
-  const [email, setMail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isValidCredentials, setIsValidCredentials] = useState(false)
+  const { register, handleSubmit, formState, setError } = useForm<LoginInput>()
+  const { isValid, errors: formErrors } = formState
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   const [commitMutation, isMutationInFlight] =
     useMutation<LoginAuthMutation>(LoginAuthMutation)
 
-  useEffect(() => {
-    if (!!email && !!password) {
-      setIsValidCredentials(true)
-    } else {
-      setIsValidCredentials(false)
-    }
-  }, [email, password])
-
-  const submitLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
+  const onSubmit: SubmitHandler<LoginInput> = ({ email, password }) => {
     commitMutation({
       variables: {
         email,
         password,
       },
-      onCompleted: ({ Auth: data }) => {
-        const tokens = data?.loginJwt?.loginResult.jwtTokens
+      onCompleted: ({ Auth: data }, errors) => {
+        if (errors) {
+          const hasInvalidAuth = errors.find(
+            (error) =>
+              error.message === errorMessages.INVALID_CREDENTIALS.serverError
+          )
+
+          if (hasInvalidAuth) {
+            setError('email', {
+              message: errorMessages.INVALID_CREDENTIALS.niceName,
+            })
+          }
+          return
+        }
+
+        const tokens = data.loginJwt?.loginResult.jwtTokens
         localStorage.setItem(localState.ACCESS_TOKEN, tokens?.accessToken || '')
 
         // @ts-ignore
@@ -70,6 +78,7 @@ const Login = () => {
           localState.USER,
           data.login?.accounts[0].name || ''
         )
+
         navigate(ROUTES.DASHBOARD)
       },
       onError: (error) => {
@@ -79,28 +88,33 @@ const Login = () => {
   }
 
   return (
-    <div className='p-4 m-10 bg-slate-400 text-slate-950 max-w-96 mx-auto rounded'>
-      <h1 className='text-3xl font-bold mb-4'>Login</h1>
-      <form onSubmit={submitLogin} className='flex flex-col gap-5'>
+    <div className='p-4 m-10 bg-slate-400 text-slate-950 max-w-md mx-auto rounded'>
+      <h1 className='text-4xl font-bold mb-4'>Login</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5'>
         <div className='flex flex-col gap-1'>
           <TextInput
             label='E-Mail'
+            name='email'
             type='email'
-            value={email}
-            setValue={setMail}
+            register={register}
+            required
+            error={formErrors.email}
           />
           <TextInput
             label='Passwort'
+            name='password'
             type='password'
-            value={password}
-            setValue={setPassword}
+            register={register}
+            required
+            error={formErrors.password}
           />
         </div>
         <button
-          disabled={!isValidCredentials || isMutationInFlight}
+          disabled={isMutationInFlight}
           type='submit'
+          // className={`p-2 rounded text-white mt-4 bg-blue-500 `}
           className={`p-2 rounded text-white mt-4 ${
-            isValidCredentials
+            isValid
               ? 'bg-blue-500 text-black'
               : 'bg-slate-700 cursor-not-allowed'
           }`}

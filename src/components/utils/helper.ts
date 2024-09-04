@@ -7,6 +7,15 @@ export enum localState {
     TITLE_CARDS = 'titleCards',
 }
 
+export const errorMessages = {
+    INVALID_CREDENTIALS: {
+        serverError: 'auth_login_with_email_and_password_unspecified_auth',
+        niceName: 'Das Passwort oder der Benutzername ist ungültig.'
+    }
+}
+
+
+
 export const allPermissions: Permission[] = [
 "AccountPermission_AVGSPotentialAnalysis_IsAVGSAccount",
 "AccountPermission_AZAVAdmin_IsAZAVAccount",

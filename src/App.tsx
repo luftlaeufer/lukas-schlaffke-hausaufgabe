@@ -24,12 +24,12 @@ function App() {
         { path: ROUTES.NOT_FOUND, element: <NotFound /> },
         {
           path: ROUTES.DASHBOARD,
-          ErrorBoundary: () => <SessionExpired />,
           element: (
             <ProtectedRoute isAuthenitacted={isAuthenitacted}>
               <Dashboard />
             </ProtectedRoute>
           ),
+          ErrorBoundary: () => <SessionExpired />,
         },
       ],
       ErrorBoundary: () => <NotFound />,

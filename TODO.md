@@ -1,3 +1,4 @@
-- Not Found Route
 - Refresh Token Rotation
-- Session Expired Route
+- React Hook + yup for Login Form
+- Setup Tests
+- <Suspense fallback={<div>Loading...</div>}> as spinner
