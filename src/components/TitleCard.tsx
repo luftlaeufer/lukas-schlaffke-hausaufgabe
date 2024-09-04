@@ -1,5 +1,4 @@
-import { Reorder, useMotionValue } from 'framer-motion'
-import useAnimationCard from './hooks/useAnimationCard'
+import { Reorder } from 'framer-motion'
 import { useState } from 'react'
 
 interface TitleCardInterface {
@@ -7,12 +6,10 @@ interface TitleCardInterface {
 }
 
 const TitleCard = ({ title }: TitleCardInterface) => {
-  const y = useMotionValue(0)
-  const boxShadow = useAnimationCard(y)
   const [isMoving, setIsMoving] = useState(false)
 
   return (
-    <Reorder.Item value={title} id={title} style={{ boxShadow, y }}>
+    <Reorder.Item value={title} id={title}>
       <div>
         <div
           onMouseDownCapture={() => setIsMoving(true)}
