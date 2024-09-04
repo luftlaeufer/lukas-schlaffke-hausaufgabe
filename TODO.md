@@ -1,4 +1,3 @@
 - Refresh Token Rotation
-- React Hook + yup for Login Form
 - Setup Tests
 - <Suspense fallback={<div>Loading...</div>}> as spinner

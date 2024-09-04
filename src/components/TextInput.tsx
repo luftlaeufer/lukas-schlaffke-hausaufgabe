@@ -1,10 +1,10 @@
 import { UseFormRegister, Path, FieldError } from 'react-hook-form'
-import type { LoginInput } from './Login'
+import type { LoginFormInput } from './Login'
 
 interface TextInputInterface {
   type?: 'text' | 'password' | 'email'
-  name: Path<LoginInput>
-  register: UseFormRegister<LoginInput>
+  name: Path<LoginFormInput>
+  register: UseFormRegister<LoginFormInput>
   required?: boolean
   label: string
   error: FieldError | undefined
@@ -19,7 +19,7 @@ const TextInput = ({
   error,
 }: TextInputInterface) => {
   return (
-    <div className='flex flex-col gap-1'>
+    <div className='flex flex-col gap-1 mb-4'>
       <label className='font-semibold' htmlFor={name}>
         {label}
       </label>

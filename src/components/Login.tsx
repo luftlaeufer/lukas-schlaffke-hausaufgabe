@@ -34,21 +34,21 @@ const LoginAuthMutation = graphql`
   }
 `
 
-export type LoginInput = {
+export type LoginFormInput = {
   email: string
   password: string
 }
 
 const Login = () => {
-  const { register, handleSubmit, formState, setError } = useForm<LoginInput>()
-  const { isValid, errors: formErrors } = formState
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
-
   const [commitMutation, isMutationInFlight] =
     useMutation<LoginAuthMutation>(LoginAuthMutation)
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const { register, handleSubmit, formState, setError } =
+    useForm<LoginFormInput>()
+  const { isValid, errors: formErrors } = formState
 
-  const onSubmit: SubmitHandler<LoginInput> = ({ email, password }) => {
+  const onSubmit: SubmitHandler<LoginFormInput> = ({ email, password }) => {
     commitMutation({
       variables: {
         email,
@@ -89,7 +89,7 @@ const Login = () => {
 
   return (
     <div className='p-4 m-10 bg-slate-400 text-slate-950 max-w-md mx-auto rounded'>
-      <h1 className='text-4xl font-bold mb-4'>Login</h1>
+      <h1 className='text-4xl font-bold mb-8'>Login</h1>
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5'>
         <div className='flex flex-col gap-1'>
           <TextInput
@@ -110,9 +110,8 @@ const Login = () => {
           />
         </div>
         <button
-          disabled={isMutationInFlight}
+          disabled={!isValid || isMutationInFlight}
           type='submit'
-          // className={`p-2 rounded text-white mt-4 bg-blue-500 `}
           className={`p-2 rounded text-white mt-4 ${
             isValid
               ? 'bg-blue-500 text-black'
