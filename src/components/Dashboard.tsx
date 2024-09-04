@@ -48,9 +48,11 @@ const Dashboard = () => {
         axis='y'
         onMouseUp={() => setTitlesOrder()}
       >
-        {titles.map(
-          (title) => title && <TitleCard title={title} key={title} />
-        )}
+        <div className='pb-8'>
+          {titles.map(
+            (title) => title && <TitleCard title={title} key={title} />
+          )}
+        </div>
       </Reorder.Group>
     </div>
   )

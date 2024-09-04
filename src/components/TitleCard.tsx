@@ -1,5 +1,6 @@
 import { Reorder, useMotionValue } from 'framer-motion'
 import useAnimationCard from './hooks/useAnimationCard'
+import { useState } from 'react'
 
 interface TitleCardInterface {
   title: string
@@ -8,12 +9,33 @@ interface TitleCardInterface {
 const TitleCard = ({ title }: TitleCardInterface) => {
   const y = useMotionValue(0)
   const boxShadow = useAnimationCard(y)
+  const [isMoving, setIsMoving] = useState(false)
 
   return (
     <Reorder.Item value={title} id={title} style={{ boxShadow, y }}>
-      <div className='p bg-slate-800 rounded mb-3 min-h-36 shadow-md'>
-        <div className='p-4'>
-          <h3 className='text-lg font-bold mt-2 mb-4'>{title}</h3>
+      <div>
+        <div
+          onMouseDownCapture={() => setIsMoving(true)}
+          onMouseUp={() => setIsMoving(false)}
+          className={`relative bg-slate-800 rounded mb-3 min-h-36 p-4 flex justify-center items-center hover:bg-slate-700 ${
+            isMoving ? 'cursor-grabbing' : 'cursor-grab'
+          }`}
+        >
+          <h3 className='text-lg font-bold cursor-auto'>{title}</h3>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            strokeWidth='1.5'
+            stroke='currentColor'
+            className='size-6 absolute right-8'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
+            />
+          </svg>
         </div>
       </div>
     </Reorder.Item>
