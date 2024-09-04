@@ -7,6 +7,7 @@ import Welcome from './components/Welcome'
 import { ROUTES } from './components/utils/router'
 import NotFound from './components/NotFound'
 import Layout from './components/Layout'
+import SessionExpired from './components/SessionExpired'
 
 function App() {
   const isAuthenitacted = useAuth()
@@ -23,6 +24,7 @@ function App() {
         { path: ROUTES.NOT_FOUND, element: <NotFound /> },
         {
           path: ROUTES.DASHBOARD,
+          ErrorBoundary: () => <SessionExpired />,
           element: (
             <ProtectedRoute isAuthenitacted={isAuthenitacted}>
               <Dashboard />

@@ -1,9 +1,8 @@
+import { useEffect } from 'react'
 import Login from './Login'
-import { token } from './utils/helper'
 
 const SessionExpired = () => {
-  localStorage.removeItem(token.ACCESS_TOKEN)
-
+  useEffect(() => localStorage.clear(), [])
   return (
     <div>
       <p className='text-center my-4 text-red-400'>

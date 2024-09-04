@@ -1,10 +1,8 @@
 import { graphql, useLazyLoadQuery } from 'react-relay'
 import type { DashboardQuery } from './__generated__/DashboardQuery.graphql'
-import { useCallback, useState } from 'react'
 import { Reorder } from 'framer-motion'
-
 import TitleCard from './TitleCard'
-import { localState } from './utils/helper'
+import useDashboard from './hooks/useDashboard'
 
 const DashboardQuery = graphql`
   query DashboardQuery {
@@ -38,41 +36,21 @@ const DashboardQuery = graphql`
 
 const Dashboard = () => {
   const data = useLazyLoadQuery<DashboardQuery>(DashboardQuery, {})
-  const edges = data.Admin.Tree.GetContentNodes?.edges
 
-  const titles = [
-    ...(edges?.map((edge) => edge?.node?.structureDefinition?.title) ?? []),
-  ]
-
-  const getSavedTitles = () =>
-    localStorage.getItem(localState.TITLE_CARDS)
-      ? JSON.parse(localStorage.getItem(localState.TITLE_CARDS)!)
-      : titles
-
-  const [titleCards, setTitleCards] = useState<typeof titles>(getSavedTitles())
-
-  const setTitleOrder = () =>
-    localStorage.setItem(localState.TITLE_CARDS, JSON.stringify(titleCards))
-
-  // sanitise title from white space and filter empty titles
-  const cleanUpTitleFilter = useCallback(
-    (input: string | undefined) =>
-      input !== undefined && input.trim().length > 0,
-    []
-  )
+  const { titles, setTitles, setTitlesOrder } = useDashboard({ data })
 
   return (
     <div className='my-4 p-4 xl:p-0'>
       <h1 className='text-3xl mb-8 font-bold'>Lektionen</h1>
       <Reorder.Group
+        values={titles}
+        onReorder={setTitles}
         axis='y'
-        onReorder={setTitleCards}
-        values={titleCards}
-        onMouseUp={setTitleOrder}
+        onMouseUp={setTitlesOrder}
       >
-        {titleCards
-          .filter((title) => cleanUpTitleFilter(title))
-          .map((title) => title && <TitleCard title={title} key={title} />)}
+        {titles.map(
+          (title) => title && <TitleCard title={title} key={title} />
+        )}
       </Reorder.Group>
     </div>
   )
