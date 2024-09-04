@@ -17,7 +17,7 @@ const TitleCard = ({ title }: TitleCardInterface) => {
         <div
           onMouseDownCapture={() => setIsMoving(true)}
           onMouseUp={() => setIsMoving(false)}
-          className={`relative bg-slate-800 rounded mb-3 min-h-36 p-4 pr-20 flex sm:justify-center items-center hover:bg-slate-700 ${
+          className={`relative bg-slate-800 rounded mb-3 min-h-16 p-4 pr-20 flex sm:justify-center items-center hover:bg-slate-700 ${
             isMoving ? 'cursor-grabbing' : 'cursor-grab'
           }`}
         >
