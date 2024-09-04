@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react'
 import { Reorder } from 'framer-motion'
 
 import TitleCard from './TitleCard'
+import { localState } from './utils/helper'
 
 const DashboardQuery = graphql`
   query DashboardQuery {
@@ -43,7 +44,15 @@ const Dashboard = () => {
     ...(edges?.map((edge) => edge?.node?.structureDefinition?.title) ?? []),
   ]
 
-  const [titleCards, setTitleCards] = useState(titles)
+  const getSavedTitles = () =>
+    localStorage.getItem(localState.TITLE_CARDS)
+      ? JSON.parse(localStorage.getItem(localState.TITLE_CARDS)!)
+      : titles
+
+  const [titleCards, setTitleCards] = useState<typeof titles>(getSavedTitles())
+
+  const setTitleOrder = () =>
+    localStorage.setItem(localState.TITLE_CARDS, JSON.stringify(titleCards))
 
   // sanitise title from white space and filter empty titles
   const cleanUpTitleFilter = useCallback(
@@ -55,7 +64,12 @@ const Dashboard = () => {
   return (
     <div className='my-4 p-4 xl:p-0'>
       <h1 className='text-3xl mb-8 font-bold'>Lektionen</h1>
-      <Reorder.Group axis='y' onReorder={setTitleCards} values={titleCards}>
+      <Reorder.Group
+        axis='y'
+        onReorder={setTitleCards}
+        values={titleCards}
+        onMouseUp={setTitleOrder}
+      >
         {titleCards
           .filter((title) => cleanUpTitleFilter(title))
           .map((title) => title && <TitleCard title={title} key={title} />)}

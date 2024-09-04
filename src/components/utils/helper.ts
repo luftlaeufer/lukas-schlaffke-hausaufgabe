@@ -4,6 +4,7 @@ export enum localState {
     USER = 'user',
     ACCESS_TOKEN = 'accessToken',
     REFRESH_TOKEN = 'refreshToken',
+    TITLE_CARDS = 'titleCards',
 }
 
 export const allPermissions: Permission[] = [
