@@ -17,11 +17,11 @@ const TitleCard = ({ title }: TitleCardInterface) => {
         <div
           onMouseDownCapture={() => setIsMoving(true)}
           onMouseUp={() => setIsMoving(false)}
-          className={`relative bg-slate-800 rounded mb-3 min-h-36 p-4 flex justify-center items-center hover:bg-slate-700 ${
+          className={`relative bg-slate-800 rounded mb-3 min-h-36 p-4 pr-20 flex sm:justify-center items-center hover:bg-slate-700 ${
             isMoving ? 'cursor-grabbing' : 'cursor-grab'
           }`}
         >
-          <h3 className='text-lg font-bold cursor-auto'>{title}</h3>
+          <h3 className='text-lg font-bold'>{title}</h3>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
