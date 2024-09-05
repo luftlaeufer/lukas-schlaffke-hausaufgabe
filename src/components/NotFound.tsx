@@ -1,8 +1,8 @@
-import { useEffect } from "react"
-import { Link } from "react-router-dom"
-import { useAppDispatch } from "../store"
-import { setUser } from "../store/userReducer"
-import { ROUTES } from "../utils/router"
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useAppDispatch } from '../store'
+import { setUser } from '../store/userReducer'
+import { ROUTES } from '../utils/router'
 
 const NotFound = () => {
   useEffect(() => localStorage.clear(), [])
@@ -10,7 +10,7 @@ const NotFound = () => {
   dispatch(setUser({ accounts: [], permissionsInAccounts: [] }))
 
   return (
-    <div className='flex flex-col items-center justify-center mt-24'>
+    <div className='flex flex-col items-center justify-center text-slate-200 p-8 min-h-screen'>
       <h1 className='text-6xl font-bold'>404</h1>
       <p className='text-2xl mb-4'>Page not found</p>
       <Link to={ROUTES.LOGIN} className='block w-fit mx-auto'>
