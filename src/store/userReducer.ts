@@ -1,7 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import type { LoginAuthMutation$data } from '../components/__generated__/LoginAuthMutation.graphql'
 
-
 type WriteableData<T> = { -readonly [P in keyof T]: WriteableData<T[P]> };
 type UserStore = WriteableData<LoginAuthMutation$data['Auth']['login']>
 

@@ -1,14 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit'
-import appReducer from './appReducer'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import userReducer from './userReducer'
 import { useDispatch, useSelector } from 'react-redux'
 
-const reducer = {
-  app: appReducer,
+const appReducerList = {
+  user: userReducer,
 }
 
-const store = configureStore({
-    reducer
-})
+const appReducer = combineReducers(appReducerList)
+
+const reducer = {
+  app: appReducer
+}
+
+const store = configureStore({reducer})
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

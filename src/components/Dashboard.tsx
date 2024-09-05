@@ -19,15 +19,10 @@ const DashboardQuery = graphql`
             endCursor
           }
           edges {
-            cursor
             node {
               id
               structureDefinition {
                 title
-              }
-              description
-              image {
-                url
               }
             }
           }

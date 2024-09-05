@@ -7,11 +7,9 @@ import {
 } from "relay-runtime";
 import { localState } from "./utils/helper";
 
-const HTTP_ENDPOINT = "https://staging.api.constellation.academy/api/graphql";
-
 const fetchFn: FetchFunction = async (request, variables) => {
   // console.log({request, variables})
-  const resp = await fetch(HTTP_ENDPOINT, {
+  const resp = await fetch(import.meta.env.VITE_GRAPHQL_ENDPOINT, {
     method: "POST",
     headers: {
       Accept:

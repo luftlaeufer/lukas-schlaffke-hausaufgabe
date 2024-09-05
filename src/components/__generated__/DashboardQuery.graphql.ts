@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c58e5d5cc67c529d6919bfec847dd4ba>>
+ * @generated SignedSource<<67a1018617264f639824cd787a4a96e1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,13 +15,8 @@ export type DashboardQuery$data = {
     readonly Tree: {
       readonly GetContentNodes: {
         readonly edges: ReadonlyArray<{
-          readonly cursor: string;
           readonly node: {
-            readonly description: string | null | undefined;
             readonly id: string;
-            readonly image: {
-              readonly url: string | null | undefined;
-            } | null | undefined;
             readonly structureDefinition: {
               readonly title: string;
             };
@@ -93,35 +88,14 @@ v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "cursor",
+  "name": "id",
   "storageKey": null
 },
 v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-},
-v4 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
   "name": "title",
-  "storageKey": null
-},
-v5 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "description",
-  "storageKey": null
-},
-v6 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "url",
   "storageKey": null
 };
 return {
@@ -164,7 +138,6 @@ return {
                     "name": "edges",
                     "plural": true,
                     "selections": [
-                      (v2/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -173,7 +146,7 @@ return {
                         "name": "node",
                         "plural": false,
                         "selections": [
-                          (v3/*: any*/),
+                          (v2/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -182,20 +155,7 @@ return {
                             "name": "structureDefinition",
                             "plural": false,
                             "selections": [
-                              (v4/*: any*/)
-                            ],
-                            "storageKey": null
-                          },
-                          (v5/*: any*/),
-                          {
-                            "alias": null,
-                            "args": null,
-                            "concreteType": "File",
-                            "kind": "LinkedField",
-                            "name": "image",
-                            "plural": false,
-                            "selections": [
-                              (v6/*: any*/)
+                              (v3/*: any*/)
                             ],
                             "storageKey": null
                           }
@@ -257,7 +217,6 @@ return {
                     "name": "edges",
                     "plural": true,
                     "selections": [
-                      (v2/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -266,7 +225,7 @@ return {
                         "name": "node",
                         "plural": false,
                         "selections": [
-                          (v3/*: any*/),
+                          (v2/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -282,20 +241,6 @@ return {
                                 "name": "__typename",
                                 "storageKey": null
                               },
-                              (v4/*: any*/)
-                            ],
-                            "storageKey": null
-                          },
-                          (v5/*: any*/),
-                          {
-                            "alias": null,
-                            "args": null,
-                            "concreteType": "File",
-                            "kind": "LinkedField",
-                            "name": "image",
-                            "plural": false,
-                            "selections": [
-                              (v6/*: any*/),
                               (v3/*: any*/)
                             ],
                             "storageKey": null
@@ -318,16 +263,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "9ec53c7b524075616de96bc14a96fd81",
+    "cacheID": "e6ce31bbf137c829aec1de9655e50ead",
     "id": null,
     "metadata": {},
     "name": "DashboardQuery",
     "operationKind": "query",
-    "text": "query DashboardQuery {\n  Admin {\n    Tree {\n      GetContentNodes(first: 10) {\n        pageInfo {\n          hasNextPage\n          hasPreviousPage\n          startCursor\n          endCursor\n        }\n        edges {\n          cursor\n          node {\n            id\n            structureDefinition {\n              __typename\n              title\n            }\n            description\n            image {\n              url\n              id\n            }\n          }\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query DashboardQuery {\n  Admin {\n    Tree {\n      GetContentNodes(first: 10) {\n        pageInfo {\n          hasNextPage\n          hasPreviousPage\n          startCursor\n          endCursor\n        }\n        edges {\n          node {\n            id\n            structureDefinition {\n              __typename\n              title\n            }\n          }\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "afb03dc2b4a599a59638d3fa3ace6654";
+(node as any).hash = "d4e4067f50ce842a81b94ea61b06c1c3";
 
 export default node;
