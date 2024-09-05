@@ -11,3 +11,7 @@ body {
   overflow-y: auto;
   height: 100%;
 }
+
+code {
+  @apply bg-gray-300 p-1 px-2 rounded;
+}
