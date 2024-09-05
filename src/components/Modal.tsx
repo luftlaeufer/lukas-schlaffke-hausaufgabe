@@ -49,7 +49,7 @@ const Modal = ({ dialogRef }: ModalInterface) => (
         den Bug nur leider nicht gefunden.
       </ListItem>
       <ListItem>
-        <strong>Refresh-Token-Rotation:</strong>. Nachdem der User eingeloggt
+        <strong>Refresh-Token-Rotation:</strong> Nachdem der User eingeloggt
         ist, wird es nach dem Session-Time-Out problematisch. Da ich zum ersten
         mal mit Relay gearbeitet habe, war mir nicht klar, wie man den
         Access-Token & Refresh-Token austauscht.
