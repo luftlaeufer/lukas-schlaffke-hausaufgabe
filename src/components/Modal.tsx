@@ -65,8 +65,8 @@ const Modal = ({ dialogRef }: ModalInterface) => {
       </ul>
       <p>
         <strong>Mein Learning:</strong> Initiale Setups von neuen Projekten
-        fallen mir noch ein bisschen schwer. Sobald ein Projekt gut aufgesetzt
-        ist, gehen die nächsten Schritte reibungsloser.
+        haben ihre eigenen Herausforderungen. Sobald ein Projekt gut aufgesetzt
+        ist, gehen die nächsten Schritte meist reibungsloser.
       </p>
     </dialog>
   )
